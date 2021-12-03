@@ -1,7 +1,7 @@
 import os
 import shutil
-import filecmp.cmp as compare 
 from time import sleep, time
+from filecmp import cmp as compare 
 
 
 def pybackup():
@@ -18,10 +18,13 @@ def pybackup():
         oldBackupStamp = getOldBackupStamp(destinationPath)
         oldDestinationPathWithDate = destinationPath + "/" + str(oldBackupStamp)
 
+        os.system("clear")
+
         print("Backing up ...")
         fullBackup(allFiles, originPath, destinationPathWithDate)
-        print("Done!")
+        print("Cleaning old latest backup ...")
         cleanOldBackup(oldDestinationPathWithDate, destinationPathWithDate, str(oldBackupStamp), str(newBackupStamp))
+        print("Done!")
 
 # pybackup()
 def firstRun():
