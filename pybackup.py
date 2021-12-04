@@ -1,7 +1,9 @@
 import os
 import shutil
 from time import sleep, time
-from filecmp import cmp as compare 
+from filecmp import cmp as compare
+
+toIgnore = []
 
 
 def pybackup():
@@ -78,11 +80,17 @@ def listFiles(path, mode):
     filesInDir = []
     foldersInDir = []
     for path in allInDir:
-        isFile = os.path.isfile(path)
-        if isFile == True:
-            filesInDir.append(path)
-        else:
-            foldersInDir.append(path)
+        ignorePath = False
+        for ignore in toIgnore:
+            if path == ignore:
+                ignorePath = True
+
+        if ignorePath == False:
+            isFile = os.path.isfile(path)
+            if isFile == True:
+                filesInDir.append(path)
+            else:
+                foldersInDir.append(path)
     
     selectListFilesMode(mode, filesInDir, foldersInDir)
 
