@@ -10,21 +10,19 @@ def pybackup():
         firstRun()
         exit()
     
-    createNewBackupYesNo = input("Create new backup [y/N]? ")
-    if createNewBackupYesNo.lower() == "y":
-        originPath, destinationPath = importPaths()
+    originPath, destinationPath = importPaths()
 
-        destinationPathWithDate, newBackupStamp = pathDateFormat(destinationPath)
-        oldBackupStamp = getOldBackupStamp(destinationPath)
-        oldDestinationPathWithDate = destinationPath + "/" + str(oldBackupStamp)
+    destinationPathWithDate, newBackupStamp = pathDateFormat(destinationPath)
+    oldBackupStamp = getOldBackupStamp(destinationPath)
+    oldDestinationPathWithDate = destinationPath + "/" + str(oldBackupStamp)
 
-        os.system("clear")
+    os.system("clear")
 
-        print("Backing up ...")
-        fullBackup(allFiles, originPath, destinationPathWithDate)
-        print("Cleaning old latest backup ...")
-        cleanOldBackup(oldDestinationPathWithDate, destinationPathWithDate, str(oldBackupStamp), str(newBackupStamp))
-        print("Done!")
+    print("Backing up ...")
+    fullBackup(allFiles, originPath, destinationPathWithDate)
+    print("Cleaning old latest backup ...")
+    cleanOldBackup(oldDestinationPathWithDate, destinationPathWithDate, str(oldBackupStamp), str(newBackupStamp))
+    print("Done!")
 
 # pybackup()
 def firstRun():
