@@ -3,7 +3,7 @@ import shutil
 from time import sleep, time
 from filecmp import cmp as compare
 
-toIgnore = []
+toIgnore = [] # Full path, no "/" at the end
 
 
 def pybackup():
