@@ -10,7 +10,7 @@ sshIP="SERVER_IP_ADRESS"
 serverMountDir="DIRECTORY_TO_MOUNT_NFS_IN"
 pybackupRunDir="PYBACKUP_RUN_DIRECTORY"
 
-echo "$(date) Start sh backup script" >> $logFilePath
+printf "$(date) Start sh backup script\n" >> $logFilePath
 
 sleep 10
 wget -q --spider $internetCheckSite
@@ -23,10 +23,10 @@ done
 sshfs -p $sshPort $sshUser@$sshIP:/ $serverMountDir
 
 cd $pybackupRunDir
-echo "$(date) Start py backup script" >> $logFilePath
+printf "$(date) Start py backup script\n" >> $logFilePath
 python3 pybackup.py
-echo "$(date) End py backup script" >> $logFilePath
+printf "$(date) End py backup script\n" >> $logFilePath
 
 fusermount -u $serverMountDir # Comment line to leave NFS server mounted after backup
 
-echo "$(date) End sh backup script\n" >> $logFilePath
+printf "$(date) End sh backup script\n\n" >> $logFilePath
